@@ -5,6 +5,7 @@
 import logging
 import pandas as pd
 from utilities import debugging as debug
+from frameworks import validation as v
 
 ###################
 #                 #
@@ -50,7 +51,7 @@ data_dic = None
 # Models #
 ##########
 # put in the models and parameters you would like
-list_of_models = {
+models_to_evaulate = {
     'LogisticRegression' : [{'penalty':'elasticnet',
                             'C':0.9
                             },
@@ -62,6 +63,7 @@ list_of_models = {
                                }]
 }
 
+models = []
 
 
 ########################
@@ -84,6 +86,12 @@ def collect_paths():
              'Raw_Files': (basePath / 'Raw_Files')}
     return
 
+def create_models():
+    global models
+    debug.debug_text('Creating list of models', update=True)
+    for key, values in models_to_evaulate.items():
+        for value in values:
+            models.append(v.model(model_to_run=key,params=value))
 
 def init_system():
     global count, total_to_download, mode, app_name
@@ -103,5 +111,7 @@ def init_system():
                         format='%(asctime)s %(message)s',
                         filemode='w')
     logging.info('Logging for {} stored at {}'.format(app_name, paths['Output']))
+
+    create_models()
 
     return
