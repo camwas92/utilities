@@ -109,24 +109,38 @@ def split_data(df, target=con.target, train_per=con.train_per, test_per=con.test
         x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, train_size=test_per / (test_per + val_per))
 
         debug.debug_text(
-            'Sizes ({}): x_train ({}), x_test ({}), x_val ({}), y_train ({}), y_test ({}), y_val ({})'.format(len(df),len(x_train),
-                                                                                                         len(x_test),
-                                                                                                         len(x_val),
-                                                                                                         len(y_train),
-                                                                                                         len(y_test),
-                                                                                                         len(y_val)),
+            'Sizes ({}): x_train ({}), x_test ({}), x_val ({}), y_train ({}), y_test ({}), y_val ({})'.format(len(df),
+                                                                                                              len(
+                                                                                                                  x_train),
+                                                                                                              len(
+                                                                                                                  x_test),
+                                                                                                              len(
+                                                                                                                  x_val),
+                                                                                                              len(
+                                                                                                                  y_train),
+                                                                                                              len(
+                                                                                                                  y_test),
+                                                                                                              len(
+                                                                                                                  y_val)),
             update=True)
 
         return {'x_train': x_train, 'x_test': x_test, 'x_val': x_val, 'y_train': y_train, 'y_test': y_test,
                 'y_val': y_val}
     else:
         debug.debug_text(
-            'Sizes ({}): x_train ({}), x_test ({}), x_val ({}), y_train ({}), y_test ({}), y_val ({})'.format(len(df),len(x_train),
-                                                                                                         len(x_test),
-                                                                                                         len(x_val),
-                                                                                                         len(y_train),
-                                                                                                         len(y_test),
-                                                                                                         len(y_val)),
+            'Sizes ({}): x_train ({}), x_test ({}), x_val ({}), y_train ({}), y_test ({}), y_val ({})'.format(len(df),
+                                                                                                              len(
+                                                                                                                  x_train),
+                                                                                                              len(
+                                                                                                                  x_test),
+                                                                                                              len(
+                                                                                                                  x_val),
+                                                                                                              len(
+                                                                                                                  y_train),
+                                                                                                              len(
+                                                                                                                  y_test),
+                                                                                                              len(
+                                                                                                                  y_val)),
             update=True)
 
         return {'x_train': x_train, 'x_test': x_test, 'y_train': y_train, 'y_test': y_test}

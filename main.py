@@ -6,44 +6,36 @@ from frameworks import validation as v
 from utilities import config as con
 from utilities import debugging as debug
 
-
+# initialise system
 con.init_system()
-
 
 #################
 # DATA CLEANING #
 #################
-debug.debug_text('Preprocessing Data',level_1=True)
-
-df = dp.load_file(name='titanic',type='csv')
-
-# rename fields
+debug.debug_text('Pre-processing Data', level_1=True)
+# 1) Load data
+df = dp.load_file(name='titanic', type='csv')
+# 2) rename fields
 df = dp.rename_column(df)
-
-# remove fields
+# 3) remove fields
 df = dp.remove_columns(df)
-
-# replace missing
+# 4) replace missing
 df = dp.replace_missing(df)
-
-# replace values
+# 5) replace values
 df = dp.replace_values(df)
-
-# one hot encoding
+# 6) one hot encoding
 df = dp.one_hot_encode(df)
-
-# change index column
+# 7) change index column
 df = dp.change_index_column(df)
-
-# normalise fields
+# 8) normalise fields
 df = dp.normalise_fields(df)
-
-# split data
+# 9)split data
 con.data_dic = dp.split_data(df)
 
-
-##############
-# MODELLLING #
-##############
-debug.debug_text('Modelling',level_1=True)
+#############################
+# MODELLLING and VALIDATION #
+#############################
+debug.debug_text('Modelling', level_1=True)
 m.run_models()
+# complete
+debug.debug_text('{} is completed'.format(con.app_name),error=con.error_flag,success= not con.error_flag)
